@@ -1,5 +1,5 @@
 # Base-Material-UI-Blog 
-A Material-UI starting point for Meteor/React apps. (Fork of [TheMeteorChef's Base](http://themeteorchef.com/base))
+A Material-UI starting point for a Meteor/React blog/portfolio. (Fork of [TheMeteorChef's Base](http://themeteorchef.com/base))
 
 | [TODO](#todo) | [COMPARISON](/COMPARISON.md) | [Examples](/README.md) |  [ORIGINAL Base Docs](http://themeteorchef.com/base) |
 |---|---|---|---|
