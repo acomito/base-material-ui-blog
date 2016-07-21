@@ -1,9 +1,9 @@
 import React from 'react';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { insertDocument } from '../../api/documents/methods.js';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import { insertDocument } from '../../../api/documents/methods.js';
+import { RaisedButton, FlatButton, FloatingActionButton } from 'material-ui';
+/*import FlatButton from 'material-ui/FlatButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';*/
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Formsy from 'formsy-react';
 import Dialog from 'material-ui/Dialog';

@@ -5,7 +5,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import { Meteor } from 'meteor/meteor';
 import { App } from '../../ui/layouts/app';
 //Pages
-import { Documents } from '../../ui/pages/documents';
+import { AdminBlogList } from '../../ui/admin/pages/blog-list';
 import { Index } from '../../ui/pages/index';
 import { Login } from '../../ui/pages/login';
 import { NotFound } from '../../ui/pages/not-found';
@@ -14,7 +14,7 @@ import { ResetPassword } from '../../ui/pages/reset-password';
 /*import { Signup } from '../../ui/pages/signup';*/
 import { About } from '../../ui/pages/about';
 import { Blog } from '../../ui/pages/blog';
-import { Admin } from '../../ui/layouts/admin-frame.js';
+import { Admin } from '../../ui/admin/layouts/admin-frame.js';
 import { Contact } from '../../ui/pages/contact';
 import { IndividualBlogPage } from '../../ui/pages/individual-blog';
 
@@ -76,7 +76,7 @@ Meteor.startup(() => {
               ADMIN ROUTES 
         ----------------------------------------*/}
         <Route name="admin"  path="/admin" component={ Admin } onEnter={ requireAuth } >
-          <Route name="documents" path="/documents" component={ Documents } />
+          <Route name="documents" path="/documents" component={ AdminBlogList } />
         </Route>
         <Route path="*" component={ NotFound } />
     </Router>

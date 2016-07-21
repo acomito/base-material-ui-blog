@@ -1,34 +1,34 @@
 import React from 'react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { insertDocument } from '../../api/documents/methods.js';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import { RaisedButton, FlatButton, FloatingActionButton, Dialog } from 'material-ui';
 import Mail from 'material-ui/svg-icons/content/mail';
 import Formsy from 'formsy-react';
-import Dialog from 'material-ui/Dialog';
+/*import Dialog from 'material-ui/Dialog';*/
 import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
     FormsySelect, FormsyText, FormsyTime, FormsyToggle } from 'formsy-material-ui/lib';
 
 
 
   const styles = {
-    cardStyles: {
+/*    cardStyles: {
       width: "100%",
       margin: "40px auto",
       padding: "10px"
-    },
-    cardActionStyles: {
+    },*/
+/*    cardActionStyles: {
       width: "15%",
       display: "inline-block",
-    },
+    },*/
     fieldStyle: {
       display: "block",
       width: "90%",
       marginBottom: "25px"
     },
     buttonStyles: {
-      marginLeft: "10px"
+      marginLeft: "10px",
+      marginTop: "20px",
+      marginBottom: "10px"
     },
     actionContainer:{
       display: "inline",
@@ -63,6 +63,10 @@ export class ContactForm extends React.Component {
     this.setState({open: true});
   }
 
+  handleClose() {
+    this.setState({open: false});
+  }
+
   enableButton() {
     this.setState({ canSubmit: true });
   }
@@ -72,25 +76,10 @@ export class ContactForm extends React.Component {
   }
 
   submit(data, resetForm) {
-      
-      let title = data.document.trim();
-
-      const closeModal = () => {
-        this.setState({ open: false, canSubmit: false });
-      };
-
-      insertDocument.call({title}, (error) => {   
-          if (error) { Bert.alert(error.reason, 'danger'); return; }
-          //else
-          Bert.alert('Document added!', 'success');
-          closeModal();
-          return;
-      });
+      console.log(data);
   }
 
-  handleClose() {
-    this.setState({open: false});
-  }
+
 
 
 render() {
@@ -103,13 +92,25 @@ render() {
         <Dialog open={this.state.open} onRequestClose={this.handleClose} title="Contact Me" >
           <Formsy.Form onSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton} ref="form">
             <FormsyText 
-                floatingLabelText="Document"
+                floatingLabelText="Your Name"
                 style={styles.fieldStyle}
-                name="document" 
+                name="name" 
                 required 
             />
-            <RaisedButton style={styles.buttonStyles} type="submit" secondary={true} label="Add Document" disabled={!this.state.canSubmit} />
-            <RaisedButton style={styles.buttonStyles} label="Cancel" onTouchTap={this.handleClose} />  
+            <FormsyText 
+                floatingLabelText="Your Email"
+                style={styles.fieldStyle}
+                name="email" 
+                required 
+            />
+            <FormsyText 
+                floatingLabelText="How Can I Help You?"
+                style={styles.fieldStyle}
+                name="summary" 
+                required 
+            />
+            <RaisedButton style={styles.buttonStyles} type="submit" secondary={true} label="Send Message" disabled={!this.state.canSubmit} />
+            {/*<RaisedButton style={styles.buttonStyles} label="Cancel" onTouchTap={this.handleClose} />  */}
         </Formsy.Form>
         </Dialog>
       </div>

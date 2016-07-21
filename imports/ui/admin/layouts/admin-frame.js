@@ -1,6 +1,6 @@
 import React from 'react';
 /*import AdminNavigation from '../components/admin-navigation';*/
-import AppNavigation from '../containers/app-navigation';
+import AppNavigation from '../../containers/app-navigation';
 
 const styles = {
 	adminContainer: {

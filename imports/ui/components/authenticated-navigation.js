@@ -58,9 +58,9 @@ export class AuthenticatedNavigation extends React.Component {
     });
   }
 
-handleLogout() {
-  Meteor.logout(() => browserHistory.push('/login'));
-}
+  handleLogout() {
+    Meteor.logout(() => browserHistory.push('/login'));
+  }
 
   handleRequestClose(){
     this.setState({
@@ -70,20 +70,20 @@ handleLogout() {
 
   render() {
     return <div>
-            <Link to="/"  ><FlatButton style={styles.navLink} label="Index" /></Link>
+            <Link to="/"  ><FlatButton style={styles.navLink} label="Profile" /></Link>
             <Link to="/documents" ><FlatButton style={styles.navLink} label="Blog Posts" /></Link>
             <UserNameDropDown handleTouchTap={this.handleTouchTap} />
-            <Popover
-              open={this.state.open}
-              anchorEl={this.state.anchorEl}
-              anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-              targetOrigin={{horizontal: 'left', vertical: 'top'}}
-              onRequestClose={this.handleRequestClose}
-            >
-              <Menu>
-                <MenuItem primaryText="Logout" onTouchTap={ this.handleLogout }  />
-              </Menu>
-            </Popover>
+              <Popover
+                open={this.state.open}
+                anchorEl={this.state.anchorEl}
+                anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
+                targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                onRequestClose={this.handleRequestClose}
+              >
+                <Menu>
+                  <MenuItem primaryText="Logout" onTouchTap={ this.handleLogout }  />
+                </Menu>
+              </Popover>
         </div>
   }
   

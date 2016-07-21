@@ -1,15 +1,11 @@
 import React from 'react';
-import { Blog } from './blog.js';
+/*import { Blog } from './blog.js';*/
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import { Link } from 'react-router';
 
 const styles = {
-  cardList: {
-    marginBottom: "100px",
-  },
   root: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -54,15 +50,4 @@ BlogList.propTypes = {
 };
 
 
-/*export const BlogList = ({ documents }) => (
-  documents.length > 0 ? <div style={styles.cardList}>
-    {documents.map((doc) => (
-      <Blog key={ doc._id } document={ doc } />
-    ))}
-  </div> :
-  <div>No Blog Posts Yet....</div>
-);
 
-BlogList.propTypes = {
-  documents: React.PropTypes.array,
-};*/

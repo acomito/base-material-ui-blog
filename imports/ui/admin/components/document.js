@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, ListGroupItem, FormControl, Button } from 'react-bootstrap';
 import { Bert } from 'meteor/themeteorchef:bert';
-import { updateDocument, removeDocument } from '../../api/documents/methods.js';
+import { updateDocument, removeDocument } from '../../../api/documents/methods.js';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import DeleteDialog from './delete-dialog.js';
