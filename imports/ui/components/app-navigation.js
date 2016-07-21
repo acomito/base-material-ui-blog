@@ -1,5 +1,4 @@
 import React from 'react';
-import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { PublicNavigation } from './public-navigation';
 import { AuthenticatedNavigation } from './authenticated-navigation';
@@ -22,7 +21,7 @@ export class AppNavigation extends React.Component {
 
   render() {
     return <AppBar 
-              title={<Link to="/" style={styles.titleLink}>Application Name</Link>}
+              title={<Link to="/" style={styles.titleLink}>Blog Name</Link>}
               showMenuIconButton={false}
               style={styles.AppNavigation}
               iconElementRight={ this.renderNavigation(this.props.hasUser)} 

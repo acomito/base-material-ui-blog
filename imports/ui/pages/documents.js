@@ -4,7 +4,7 @@ import { AddDocument } from '../components/add-document.js';
 
 export const Documents = () => (
     <div>
-      <h4>Documents</h4>
+      <h4>Blogs</h4>
       <AddDocument />
       <DocumentsList />
     </div>

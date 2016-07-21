@@ -11,11 +11,14 @@ const styles = {
 
 export const PublicNavigation = () => (
 	<div>
-    	<Link to="/signup" >
-    		<FlatButton style={styles.navLink} label="Signup" />
+    	<Link to="/about" >
+    		<FlatButton style={styles.navLink} label="About" />
     	</Link>
-    	<Link to="/login"  >
-    		<FlatButton style={styles.navLink} label="Login" />
+    	<Link to="/blog"  >
+    		<FlatButton style={styles.navLink} label="Blog" />
     	</Link>
+        <Link to="/contact"  >
+            <FlatButton style={styles.navLink} label="Contact" />
+        </Link>
     </div>
 );

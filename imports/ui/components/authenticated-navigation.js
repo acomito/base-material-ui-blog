@@ -71,7 +71,7 @@ handleLogout() {
   render() {
     return <div>
             <Link to="/"  ><FlatButton style={styles.navLink} label="Index" /></Link>
-            <Link to="/documents" ><FlatButton style={styles.navLink} label="Documents" /></Link>
+            <Link to="/documents" ><FlatButton style={styles.navLink} label="Blog Posts" /></Link>
             <UserNameDropDown handleTouchTap={this.handleTouchTap} />
             <Popover
               open={this.state.open}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid } from 'react-bootstrap';
 import AppNavigation from '../containers/app-navigation';
+import { ContactForm } from  '../components/contact-form';
 
 export const App = React.createClass({
   propTypes: {
@@ -8,10 +9,11 @@ export const App = React.createClass({
   },
   render() {
     return <div>
+      <ContactForm />
       <AppNavigation />
-      <Grid>
+      {/*<Grid>*/}
         { this.props.children }
-      </Grid>
+      {/*</Grid>*/}
     </div>;
   },
 });

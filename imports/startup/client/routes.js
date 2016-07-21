@@ -11,7 +11,14 @@ import { Login } from '../../ui/pages/login';
 import { NotFound } from '../../ui/pages/not-found';
 import { RecoverPassword } from '../../ui/pages/recover-password';
 import { ResetPassword } from '../../ui/pages/reset-password';
-import { Signup } from '../../ui/pages/signup';
+/*import { Signup } from '../../ui/pages/signup';*/
+import { About } from '../../ui/pages/about';
+import { Blog } from '../../ui/pages/blog';
+import { Admin } from '../../ui/layouts/admin-frame.js';
+import { Contact } from '../../ui/pages/contact';
+import { IndividualBlogPage } from '../../ui/pages/individual-blog';
+
+
 //Theme
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -50,15 +57,28 @@ Meteor.startup(() => {
   render(
     <MuiThemeProvider muiTheme={muiTheme}>
     <Router history={ browserHistory }>
+      {/*----------------------------------------
+              PUBLIC ROUTES 
+        ----------------------------------------*/}
       <Route path="/" component={ App }>
-        <IndexRoute name="index" component={ Index } onEnter={ requireAuth } />
-        <Route name="documents" path="/documents" component={ Documents } onEnter={ requireAuth } />
-        <Route name="login" path="/login" component={ Login } />
+        <IndexRoute name="index" component={ Index } />     
+        <Route name="about" path="/about" component={ About } />
+        <Route name="blog" path="/blog" component={ Blog } />
+        <Route name="blog-post" path="/blog/:id" component={ IndividualBlogPage } />
+        <Route name="contact" path="/contact" component={ Contact } />      
+        {/*--- ADMIN SIGN UP & LOGIN ---*/}
+        {/*<Route name="signup" path="admin/signup" component={ Signup } />*/}
+        <Route name="login" path="admin/login" component={ Login } />
         <Route name="recover-password" path="/recover-password" component={ RecoverPassword } />
         <Route name="reset-password" path="/reset-password/:token" component={ ResetPassword } />
-        <Route name="signup" path="/signup" component={ Signup } />
-        <Route path="*" component={ NotFound } />
       </Route>
+      {/*----------------------------------------
+              ADMIN ROUTES 
+        ----------------------------------------*/}
+        <Route name="admin"  path="/admin" component={ Admin } onEnter={ requireAuth } >
+          <Route name="documents" path="/documents" component={ Documents } />
+        </Route>
+        <Route path="*" component={ NotFound } />
     </Router>
     </MuiThemeProvider>,
     document.getElementById('react-root')

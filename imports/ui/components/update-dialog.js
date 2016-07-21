@@ -3,6 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Formsy from 'formsy-react';
+import MenuItem from 'material-ui/MenuItem';
 import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
     FormsySelect, FormsyText, FormsyTime, FormsyToggle } from 'formsy-material-ui/lib';
 
@@ -56,17 +57,26 @@ export default class UpdateDialog extends React.Component {
     this.setState({ canSubmit: false });
   }
 
-  submit(data) {
 
+  submit(data) {
     let docId = this.props.docToUpdate._id;
-    let title = data.document;
-    this.props.updateMethod(docId, title);
+    let newDoc = {
+      title : data.title,
+      subtitle : data.subtitle,
+      status : data.status,
+    };
+    
+    this.props.updateMethod(docId, newDoc);
     this.setState({open: false});
 
   }
 
   handleClose() {
-    this.setState({open: false});
+    this.setState({
+      open: false,
+      canSubmit: false,
+      status: this.state.status,
+    });
   }
 
   render() {
@@ -77,12 +87,30 @@ export default class UpdateDialog extends React.Component {
         <Dialog modal={false} open={this.state.open} onRequestClose={this.handleClose} title="Update Document" modal={true}>
           <Formsy.Form onSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton} ref="form">
             <FormsyText 
-              floatingLabelText="Document" 
+              floatingLabelText="title" 
               style={styles.fieldStyle}
               defaultValue={this.props.docToUpdate.title} 
-              name="document" 
+              name="title" 
               required 
             />
+            <FormsyText 
+              floatingLabelText="subtitle" 
+              style={styles.fieldStyle}
+              defaultValue={this.props.docToUpdate.subtitle} 
+              name="subtitle" 
+              required 
+            />
+            <FormsySelect 
+              floatingLabelText="status" 
+              style={styles.fieldStyle}
+              name="status" 
+              required
+              value={this.props.docToUpdate.status}
+              >
+              <MenuItem value={'draft'} primaryText="draft" />
+              <MenuItem value={'published'} primaryText="published" />
+            </FormsySelect>
+            
             <RaisedButton style={styles.buttonStyles} type="submit" secondary={true} onClick={this.resetForm} label="Save" disabled={!this.state.canSubmit} />
             <RaisedButton style={styles.buttonStyles} label="Cancel" onTouchTap={this.handleClose} />  
           </Formsy.Form>
