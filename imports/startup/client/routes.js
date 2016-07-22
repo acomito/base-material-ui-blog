@@ -17,6 +17,7 @@ import { Blog } from '../../ui/pages/blog';
 import { Admin } from '../../ui/admin/layouts/admin-frame.js';
 import { Contact } from '../../ui/pages/contact';
 import { IndividualBlogPage } from '../../ui/pages/individual-blog';
+import { AdminProfile } from '../../ui/admin/pages/profile.js';
 
 
 //Theme
@@ -77,6 +78,7 @@ Meteor.startup(() => {
         ----------------------------------------*/}
         <Route name="admin"  path="/admin" component={ Admin } onEnter={ requireAuth } >
           <Route name="documents" path="/documents" component={ AdminBlogList } />
+          <Route name="profile" path="/profile" component={ AdminProfile } />     
         </Route>
         <Route path="*" component={ NotFound } />
     </Router>

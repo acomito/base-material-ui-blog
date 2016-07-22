@@ -77,6 +77,7 @@ export class ContactForm extends React.Component {
 
   submit(data, resetForm) {
       console.log(data);
+      this.setState({open: false});
   }
 
 
