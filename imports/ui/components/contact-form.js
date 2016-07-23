@@ -16,10 +16,9 @@ import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
       margin: "40px auto",
       padding: "10px"
     },*/
-/*    cardActionStyles: {
-      width: "15%",
-      display: "inline-block",
-    },*/
+    containerDiv: {
+      zIndex: 1000
+    },
     fieldStyle: {
       display: "block",
       width: "90%",
@@ -86,7 +85,7 @@ export class ContactForm extends React.Component {
 render() {
 
     return (
-      <div>
+      <div style={styles.containerDiv}>
         <FloatingActionButton style={styles.floatingButton} secondary={true} onTouchTap={this.handleOpen}>
           <Mail />
         </FloatingActionButton>

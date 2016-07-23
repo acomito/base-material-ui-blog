@@ -31,22 +31,14 @@ const styles = {
 
 export const BlogList = ({ documents }) => (
   <div style={styles.root}>
-    <GridList
-      cellHeight={300}
-      cols={3}
-      style={styles.gridList}
-    >
+    <GridList cellHeight={300} cols={3} style={styles.gridList} >
       {documents.map((blog) => (
-        <Link key={blog._id} to={'blog/'+ blog._id } >
+        <Link key={blog._id} to={'blog/'+ blog.urlSlug } >
           <GridTile
             title={blog.title}
-            cols={1}
             subtitle={<span><b>{blog.subtitle}</b> <AccessTime style={styles.iconStyles} />{blog.timeToRead} minute read</span>}
           >
-          {blog.image ?
-            <img src={blog.image} /> :
-            <img src="http://i.imgur.com/AMf9X7E.jpg" />
-          }
+          { blog.image ? <img src={blog.image} /> : <img src="http://i.imgur.com/AMf9X7E.jpg" /> }
             
           </GridTile>
         </Link>

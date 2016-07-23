@@ -7,6 +7,7 @@ import { rateLimit } from '../../modules/rate-limit.js';
 /*import { Mongo } from 'meteor/mongo';*/
 
 
+
 export const insertDocument = new ValidatedMethod({
   name: 'documents.insert',
   validate: new SimpleSchema({
@@ -15,6 +16,9 @@ export const insertDocument = new ValidatedMethod({
     'postBody': {type: String},
     'image': {type: String},
     'timeToRead': {type: String},
+    'urlSlug': {type: String},
+    'authorAvatar': {type: String},
+    'author': {type: String},
   }).validator(),
   run(document) {
     console.log(document);
@@ -50,6 +54,11 @@ export const updateDocument = new ValidatedMethod({
     'update.title': { type: String },
     'update.subtitle': { type: String },
     'update.status': { type: String },
+    'update.author': { type: String },
+    'update.authorAvatar': { type: String },
+    'update.image': {type: String},
+    'update.timeToRead': {type: String},
+    'update.urlSlug': {type: String},
   }).validator(),
   run({ _id, update }) {
     console.log(update);

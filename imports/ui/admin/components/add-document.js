@@ -2,23 +2,25 @@ import React from 'react';
 import { Bert } from 'meteor/themeteorchef:bert';
 import { insertDocument } from '../../../api/documents/methods.js';
 import { RaisedButton, FlatButton, FloatingActionButton } from 'material-ui';
-/*import FlatButton from 'material-ui/FlatButton';
-import FloatingActionButton from 'material-ui/FloatingActionButton';*/
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Formsy from 'formsy-react';
+import getSlug from 'speakingurl';
 import Dialog from 'material-ui/Dialog';
-import $ from 'jquery';
-import ReactSummernote from "react-summernote";
-import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
-    FormsySelect, FormsyText, FormsyTime, FormsyToggle } from 'formsy-material-ui/lib';
-
-
+import { MarkdownEditor } from 'react-markdown-editor';
+import {Card, CardTitle } from 'material-ui/Card';
+import { FormsySelect, FormsyText, } from 'formsy-material-ui/lib';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { browserHistory } from 'react-router';
 
   const styles = {
     cardStyles: {
       width: "100%",
       margin: "40px auto",
-      padding: "10px"
+      padding: "15px"
+    },
+    modalStyles: {
+      width: '100%',
+      maxWidth: 'none',
     },
     cardActionStyles: {
       width: "15%",
@@ -26,24 +28,25 @@ import { FormsyCheckbox, FormsyDate, FormsyRadio, FormsyRadioGroup,
     },
     fieldStyle: {
       display: "block",
-      width: "90%",
+      width: "70%",
       marginBottom: "25px"
     },
     buttonStyles: {
-      marginLeft: "10px"
+      marginLeft: "10px",
+      marginTop: "30px"
     },
     actionContainer:{
       display: "inline",
       marginLeft: "10px",
     },
-    floatingButton: {
+/*    floatingButton: {
       margin: 0,
       top: 'auto',
       right: 20,
       bottom: 20,
       left: 'auto',
       position: 'fixed',
-    }
+    }*/
   }
 
 export class AddDocument extends React.Component {
@@ -73,7 +76,7 @@ export class AddDocument extends React.Component {
 
   onSummerNoteChange(contents) {
       console.log(contents);
-      newState = {};
+      let newState = {};
       newState['postBody'] = contents;
       this.setState(newState);
   }
@@ -84,17 +87,18 @@ export class AddDocument extends React.Component {
 
   submit(data, resetForm) {
       
-/*      let title = data.document.trim();
-      let subtitle = data.subtitle.trim();
-      let postBody = this.state.postBody;
-      let timeToRead = data.timeToRead;
-      let image = data.image;*/
+      let title = data.title.trim();
+      let name = Meteor.user().profile.name.first + ' ' + Meteor.user().profile.name.last;
+
       let docToInsert = {
-        title: data.title.trim(),
+        title: title,
         subtitle: data.subtitle.trim(),
         postBody:this.state.postBody,
         timeToRead: data.timeToRead,
         image: data.image,
+        urlSlug: getSlug(title),
+        authorAvatar: Meteor.user().profile.avatar,
+        author: name
       };
 
       const closeModal = () => {
@@ -105,7 +109,8 @@ export class AddDocument extends React.Component {
           if (error) { Bert.alert(error.reason, 'danger'); return; }
           //else
           Bert.alert('Document added!', 'success');
-          closeModal();
+          browserHistory.push('/documents');
+          /*closeModal();*/
           return;
       });
   }
@@ -118,17 +123,25 @@ export class AddDocument extends React.Component {
 render() {
 
     return (
-      <div>
-        <FloatingActionButton style={styles.floatingButton} secondary={true} onTouchTap={this.handleOpen}>
-          <ContentAdd />
-        </FloatingActionButton>
-        <Dialog 
-            autoScrollBodyContent={true}
-            open={this.state.open} 
-            onRequestClose={this.handleClose} 
-            title="Add Document"
-            modal={true}
-        >
+      <ReactCSSTransitionGroup
+      transitionName="documents-list"
+      transitionEnterTimeout={0}
+      transitionLeaveTimeout={0}
+    >
+     
+      <Card style={styles.cardStyles}>
+      <CardTitle title="Add a Post" />
+        {/*<FloatingActionButton style={styles.floatingButton} secondary={true} onTouchTap={this.handleOpen}>
+                  <ContentAdd />
+                </FloatingActionButton>
+                <Dialog 
+                    autoScrollBodyContent={true}
+                    open={this.state.open} 
+                    onRequestClose={this.handleClose} 
+                    title="Add Document"
+                    modal={true}
+                    contentStyle={styles.modalStyles}
+                >*/}
           <Formsy.Form onSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton} ref="form">
             <FormsyText 
                 floatingLabelText="title"
@@ -156,29 +169,13 @@ render() {
                 name="timeToRead" 
                 required 
             />
-            <ReactSummernote
-                value="Default value"
-                options={{
-                    lang: "ru-RU",
-                    height: 350,
-                    dialogsInBody: true,
-                    toolbar: [
-                        ["style", []],
-                        ["font", []],
-                        ["fontname", []],
-                        ["para", []],
-                        ["table", []],
-                        ["insert", []],
-                        ["view", []]
-                    ]
-                }}
-                onChange={this.onSummerNoteChange}
-            />
+            <MarkdownEditor initialContent="Test" iconsSet="font-awesome" onContentChange={this.onSummerNoteChange}/>
             <RaisedButton style={styles.buttonStyles} type="submit" secondary={true} label="Add Document" disabled={!this.state.canSubmit} />
             <RaisedButton style={styles.buttonStyles} label="Cancel" onTouchTap={this.handleClose} />  
         </Formsy.Form>
-        </Dialog>
-      </div>
+        {/*</Dialog>*/}
+      </Card>
+      </ReactCSSTransitionGroup>
     );
   }
 }

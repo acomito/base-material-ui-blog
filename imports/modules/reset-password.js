@@ -4,7 +4,6 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import { getInputValue } from './get-input-value';
 
 
-let token;
 
 const handleReset = (newPassword, token) => {
   const password = newPassword;
@@ -19,6 +18,5 @@ const handleReset = (newPassword, token) => {
 };
 
 export const handleResetPassword = (newPassword, repeatNewPassword, token) => {
-  token = token;
-  handleReset(newPassword, repeatNewPassword, token);
+  handleReset(newPassword, token);
 };

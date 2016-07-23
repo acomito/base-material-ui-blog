@@ -7,6 +7,7 @@ const users = [{
   password: 'password',
   profile: {
     name: { first: 'Carl', last: 'Winslow' },
+    avatar: "https://www.c7creative.com/wp-content/uploads/2015/05/Brian-Avatar.png"
   },
   roles: ['admin'],
 }];
@@ -17,5 +18,6 @@ users.forEach(({ email, password, profile, roles }) => {
   if (!userExists) {
     const userId = Accounts.createUser({ email, password, profile });
     Roles.addUsersToRoles(userId, roles);
+    console.log('blog admin account created!');
   }
 });

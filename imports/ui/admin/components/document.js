@@ -6,7 +6,8 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import DeleteDialog from './delete-dialog.js';
 import UpdateDialog from './update-dialog.js';
-
+import { formatDate } from '../../../modules/date-helpers.js';
+import { createMarkup } from '../../../modules/markup-helper.js';
 
 
 
@@ -28,11 +29,11 @@ const handleRemoveDocument = (documentId) => {
 
 };
 
-// see this for what is happening here: https://facebook.github.io/react/tips/dangerously-set-inner-html.html
+/*// see this for what is happening here: https://facebook.github.io/react/tips/dangerously-set-inner-html.html
 const reateMarkup = (html) => { 
   return {__html: html }; 
 };
-
+*/
 
 export const Document = ({ document }) => (
 
@@ -42,18 +43,17 @@ export const Document = ({ document }) => (
       title={document.title}
       subtitle={document.status}
       actAsExpander={true}
-      avatar="http://i.imgur.com/AMf9X7E.jpg"
+      avatar={document.image}
       showExpandableButton={true}
     />
     <CardMedia
       overlay={<CardTitle title={document.title} subtitle={document.subtitle} />}
       expandable={true}
     >
-      <img src="http://i.imgur.com/AMf9X7E.jpg" />
+      <img src={document.image}/>
     </CardMedia>
-    {/*<CardTitle title={document.title} subtitle="Card subtitle" expandable={true} />*/}
     <CardText expandable={true}>
-    <div dangerouslySetInnerHTML={reateMarkup(document.postBody)} />  
+    <div dangerouslySetInnerHTML={createMarkup(document.postBody)} />  
       <h6>status: {document.status}</h6>
     </CardText>
     <CardActions expandable={true}>
@@ -64,6 +64,11 @@ export const Document = ({ document }) => (
             title: document.title,
             subtitle: document.subtitle,
             status: document.status,
+            author: document.author,
+            authorAvatar: document.authorAvatar,
+            image: document.image,
+            urlSlug: document.urlSlug,
+            timeToRead: document.timeToRead,
           }}
         updateMethod={handleUpdateDocument.bind(this)} />
       <DeleteDialog itemType="Document" deleteMethod={handleRemoveDocument.bind(this, document._id )} />

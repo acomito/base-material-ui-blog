@@ -64,6 +64,11 @@ export default class UpdateDialog extends React.Component {
       title : data.title,
       subtitle : data.subtitle,
       status : data.status,
+      author : data.author,
+      authorAvatar : data.authorAvatar,
+      image: data.image,
+      timeToRead: data.timeToRead,
+      urlSlug: data.urlSlug,
     };
     
     this.props.updateMethod(docId, newDoc);
@@ -84,7 +89,7 @@ export default class UpdateDialog extends React.Component {
     return (
       <div style={styles.actionContainer}>
         <RaisedButton label="Update" onTouchTap={this.handleOpen} />
-        <Dialog modal={false} open={this.state.open} onRequestClose={this.handleClose} title="Update Document" modal={true}>
+        <Dialog autoScrollBodyContent={true} open={this.state.open} onRequestClose={this.handleClose} title="Update Document" modal={true}>
           <Formsy.Form onSubmit={this.submit} onValid={this.enableButton} onInvalid={this.disableButton} ref="form">
             <FormsyText 
               floatingLabelText="title" 
@@ -98,6 +103,41 @@ export default class UpdateDialog extends React.Component {
               style={styles.fieldStyle}
               defaultValue={this.props.docToUpdate.subtitle} 
               name="subtitle" 
+              required 
+            />
+            <FormsyText 
+              floatingLabelText="image" 
+              style={styles.fieldStyle}
+              defaultValue={this.props.docToUpdate.image} 
+              name="image" 
+              required 
+            />
+            <FormsyText 
+              floatingLabelText="timeToRead" 
+              style={styles.fieldStyle}
+              defaultValue={this.props.docToUpdate.timeToRead} 
+              name="timeToRead" 
+              required 
+            />
+            <FormsyText 
+              floatingLabelText="urlSlug" 
+              style={styles.fieldStyle}
+              defaultValue={this.props.docToUpdate.urlSlug} 
+              name="urlSlug" 
+              required 
+            />
+            <FormsyText 
+              floatingLabelText="author" 
+              style={styles.fieldStyle}
+              defaultValue={this.props.docToUpdate.author} 
+              name="author" 
+              required 
+            />
+            <FormsyText 
+              floatingLabelText="authorAvatar" 
+              style={styles.fieldStyle}
+              defaultValue={this.props.docToUpdate.authorAvatar} 
+              name="authorAvatar" 
               required 
             />
             <FormsySelect 

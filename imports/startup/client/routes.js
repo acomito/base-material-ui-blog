@@ -18,37 +18,19 @@ import { Admin } from '../../ui/admin/layouts/admin-frame.js';
 import { Contact } from '../../ui/pages/contact';
 import { IndividualBlogPage } from '../../ui/pages/individual-blog';
 import { AdminProfile } from '../../ui/admin/pages/profile.js';
+import { AddBlogPage } from '../../ui/admin/pages/add-blog-page.js';
 
 
 //Theme
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-const muiTheme = getMuiTheme({
-  palette: {
- /*    primary1Color: '#009688',
-    primary2Color: '#00796B',
-    accent1Color: '#FF6E40',
-    primary3Color: grey400,
-    accent1Color: pinkA200,
-    accent2Color: grey100,
-    accent3Color: grey500,
-    textColor: darkBlack,
-    alternateTextColor: white,
-    canvasColor: white,
-    borderColor: grey300,
-    disabledColor: grey300,
-    pickerHeaderColor: cyan500,
-    clockCircleColor: grey300,
-    shadowColor: fullBlack,*/
-  },
-});
+// see theme.js for an object you can use to customize your theme. See this for details: http://www.material-ui.com/#/customization/themes
+import { muiTheme } from './theme'
 
 
 const requireAuth = (nextState, replace) => {
   if (!Meteor.loggingIn() && !Meteor.userId()) {
     replace({
-      pathname: '/login',
+      pathname: '/admin/login',
       state: { nextPathname: nextState.location.pathname },
     });
   }
@@ -78,7 +60,8 @@ Meteor.startup(() => {
         ----------------------------------------*/}
         <Route name="admin"  path="/admin" component={ Admin } onEnter={ requireAuth } >
           <Route name="documents" path="/documents" component={ AdminBlogList } />
-          <Route name="profile" path="/profile" component={ AdminProfile } />     
+          <Route name="profile" path="/profile" component={ AdminProfile } />
+          <Route name="add" path="/add" component={ AddBlogPage } />   
         </Route>
         <Route path="*" component={ NotFound } />
     </Router>

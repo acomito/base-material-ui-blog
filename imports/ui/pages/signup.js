@@ -1,6 +1,6 @@
-import React from 'react';
+/*import React from 'react';
 import { Link } from 'react-router';
-/*import { Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';*/
+import { Row, Col, FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
 import { handleSignup } from '../../modules/signup';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
@@ -77,7 +77,7 @@ export class Signup extends React.Component {
       </Card>
     );
   }
-}
+}*/
 
 
 /*export class Signup extends React.Component {

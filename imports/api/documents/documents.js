@@ -67,6 +67,18 @@ Documents.schema = new SimpleSchema({
      type: String,
      optional: true
   },
+  author: {
+     type: String,
+     optional: true
+  },
+  authorAvatar: {
+     type: String,
+     optional: true
+  },    
+  urlSlug: {
+     type: String,
+     optional: true
+  },
   timeToRead: {
      type: String,
      optional: true

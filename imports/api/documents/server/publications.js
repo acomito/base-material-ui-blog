@@ -3,9 +3,9 @@ import { Documents } from '../documents';
 
 Meteor.publish('documents', () => Documents.find());
 
-Meteor.publish('singleBlog', function(id){
-	check(id, String);
-	return  Documents.find({_id: id});
+Meteor.publish('singleBlog', function(urlSlug){
+	check(urlSlug, String);
+	return  Documents.find({urlSlug: urlSlug});
 });
 
 Meteor.publish('publishedBlogs', function(){

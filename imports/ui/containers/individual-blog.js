@@ -8,7 +8,7 @@ const composer = (props, onData) => {
 	
   	const subscription = Meteor.subscribe('singleBlog', props.id);
   	if (subscription.ready()) {
-    	const document = Documents.findOne({_id: props.id});
+    	const document = Documents.findOne({urlSlug: props.id});
     	onData(null, { document });
   	}
 };

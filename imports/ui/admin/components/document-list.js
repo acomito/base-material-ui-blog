@@ -1,6 +1,7 @@
 import React from 'react';
 import { Document } from './document.js';
 
+
 const styles = {
 	cardList: {
 		marginBottom: "100px",
@@ -9,9 +10,11 @@ const styles = {
 
 export const DocumentsList = ({ documents }) => (
   documents.length > 0 ? <div style={styles.cardList}>
+  
     {documents.map((doc) => (
       <Document key={ doc._id } document={ doc } />
     ))}
+   
   </div> :
   <div>No documents yet.</div>
 );

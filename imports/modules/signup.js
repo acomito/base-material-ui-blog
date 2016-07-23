@@ -1,4 +1,4 @@
-import { browserHistory } from 'react-router';
+/*import { browserHistory } from 'react-router';
 import { Accounts } from 'meteor/accounts-base';
 import { Bert } from 'meteor/themeteorchef:bert';
 
@@ -30,4 +30,4 @@ export const handleSignup = (firstName, lastName, emailAddress, password) => {
   };
     
     signUp(user);
-};
+};*/

@@ -34,14 +34,18 @@ Same as the regular base project. See https://themeteorchef.com/base/getting-sta
 * added `formsy-react` and `formsy-react-material-ui`
 * added `react-tap-event-plugin` with `meteor npm install --save react-tap-event-plugin`
 * uses formsy instead of jquery and jquery validation
-
+* `EasyTransition` package for simple fade-in and react-router transitions between pages
 
 
 
 
 ## Other Stuff
 * [How to Do a FAB in the corner] (http://stackoverflow.com/questions/35828991/make-material-ui-reactjs-floatingactionbutton-float)
-* 
+* [AirBnB Style Guide for React] (https://github.com/airbnb/javascript/tree/master/react)
+* [MaterialUp curates the best of Material Design, daily.] (http://www.materialup.com/)
+* [Material Palette] (https://www.materialpalette.com/)
+
+
 
 ## TODO
 
